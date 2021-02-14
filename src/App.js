@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from 'react';
 
-function App() {
+import { fetchBlockByNumber } from './store';
+import { useActions } from './utils';
+import SearchForm from './SearchForm';
+import SearchResults from './SearchResults';
+
+
+const App = () => {
+  const fetchBlock = useActions(fetchBlockByNumber);
+  useEffect(() => fetchBlock(), []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <SearchForm />
+      <SearchResults />
+    </>
+  )
 }
 
 export default App;
