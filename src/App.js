@@ -11,10 +11,10 @@ const App = () => {
   useEffect(() => fetchBlock(), []);
 
   return (
-    <>
+    <div data-testid="App">
       <SearchForm />
       <SearchResults />
-    </>
+    </div>
   )
 }
 

@@ -1,8 +1,18 @@
-// import { render, screen } from '@testing-library/react';
-// import App from './App';
+import { render, screen } from './test-utils';
+import App from './App';
 
-// test('renders learn react link', () => {
-//   render(<App />);
-//   const linkElement = screen.getByText(/learn react/i);
-//   expect(linkElement).toBeInTheDocument();
-// });
+describe('components', () => {
+  it('Renders the connected app with initialState currectly', () => {
+    const intialState = {
+      isLoading: true,
+      error: null,
+      data: {},
+    };
+  
+    render(<App />, { initialState: { block: intialState } });
+  
+    expect(screen.queryByTestId("App")).toHaveTextContent('loading...');
+    expect(screen.queryByTestId("App")).toBeInTheDocument();
+  })
+})
+

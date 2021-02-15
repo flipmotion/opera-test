@@ -93,3 +93,5 @@ export const getTransactions = createSelector(
 export const getReducers = () => combineReducers({
   block: reducer
 });
+
+export const getPersistedState = ({ block }) => ({ block });

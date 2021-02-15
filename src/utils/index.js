@@ -1,3 +1,4 @@
+import 'cross-fetch/polyfill';
 import { useMemo } from 'react'
 import { bindActionCreators } from 'redux'
 import { useDispatch } from 'react-redux'
@@ -36,7 +37,6 @@ const fetchWrapper = ({
 }) => fetch('https://cloudflare-eth.com', {
   method: 'POST',
   headers: {
-    'Accept': 'application/json',
     'Content-Type': 'application/json',
   },
   body: JSON.stringify({
