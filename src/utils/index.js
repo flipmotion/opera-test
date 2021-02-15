@@ -45,7 +45,12 @@ const fetchWrapper = ({
     method: methodName,
     params: params,
   }),
-}).then(checkForError).then(result => result);
+})
+.then(checkForError)
+.then(result => result)
+.catch(e => ({ error: {
+  message: 'Something goes wrong. May the force be with you!'
+} }))
 
 export const api = {
   post: {

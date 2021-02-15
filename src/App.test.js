@@ -8,11 +8,11 @@ describe('components', () => {
       error: null,
       data: {},
     };
-  
+
     render(<App />, { initialState: { block: intialState } });
   
-    expect(screen.queryByTestId("App")).toHaveTextContent('loading...');
     expect(screen.queryByTestId("App")).toBeInTheDocument();
+    expect(screen.queryByTestId("App")).toHaveTextContent('loading...');
   })
 })
 
