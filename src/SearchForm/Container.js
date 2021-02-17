@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 import { useSelector } from 'react-redux';
-import { useActions, toHex, onlyNumbers } from '../utils';
+import { useActions, onlyNumbers } from '../utils';
 import { fetchBlockByNumber, getIsLoading } from '../store';
 import Component from './Component';
 
@@ -11,7 +11,7 @@ const Container = () => {
 
   const onChange = useCallback(({ target: { value } }) => setInputValue(value), []);
   const onKeyPress = useCallback(event => onlyNumbers(event), []);
-  const onSubmit = useCallback(() => fetchBlock(toHex(+inputValue)), [inputValue, fetchBlock]);
+  const onSubmit = useCallback(() => fetchBlock(inputValue ? inputValue : 'latest'), [inputValue, fetchBlock]);
 
   return (
     <Component

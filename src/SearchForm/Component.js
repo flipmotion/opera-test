@@ -21,6 +21,7 @@ const Component = ({
                 value={inputValue}
                 onChange={onChange}
                 onKeyPress={onKeyPress}
+                placeholder='enter number of block'
               />
             </FormGroup>
             <Button

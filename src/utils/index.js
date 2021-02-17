@@ -1,7 +1,7 @@
 import 'cross-fetch/polyfill';
-import { useMemo } from 'react'
-import { bindActionCreators } from 'redux'
-import { useDispatch } from 'react-redux'
+import { useMemo } from 'react';
+import { bindActionCreators } from 'redux';
+import { useDispatch } from 'react-redux';
 
 export const useActions = (actions, deps) => {
   const dispatch = useDispatch();
@@ -32,37 +32,23 @@ const checkForError = response => {
 };
 
 const fetchWrapper = ({
-  methodName,
-  params,
-}) => fetch('https://cloudflare-eth.com', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify({
-    jsonrpc: '2.0',
-    id: 1,
-    method: methodName,
-    params: params,
-  }),
-})
-.then(checkForError)
-.then(result => result)
-.catch(e => ({ error: {
-  message: 'Something goes wrong. May the force be with you!'
-} }))
+  number
+}) => fetch(`/api/block/${number}`, {
+  method: 'GET',
+}).then(checkForError)
+  .then(result => result)
+  .catch(e => ({ error: {
+    message: 'Something goes wrong. May the force be with you!'
+}}));
 
 export const api = {
   post: {
     getBlockByNumber: (number = 'latest') => fetchWrapper({
       methodName: 'eth_getBlockByNumber',
-      params: [`${number}`, true],
+      number,
     })
   }
 }
-
-export const toHex = num => `0x${(num).toString(16)}`;
-export const toNumber = num => parseInt(num);
 
 export const isEmpty = (obj) => obj && Object.keys(obj).length === 0 && obj.constructor === Object;
 

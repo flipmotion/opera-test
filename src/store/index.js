@@ -38,7 +38,9 @@ const reducer = createReducer({
   },
 }, intialState);
 
-export const fetchBlockByNumber = number => async dispatch => {
+export const fetchBlockByNumber = (
+  number = 'latest'
+) => async dispatch => {
   dispatch({ type: FETCH_BLOCK_REQUEST });
 
   const { result, error = null } = await api.post.getBlockByNumber(number);

@@ -24,7 +24,7 @@ describe('async actions', () => {
       transactions: [],
     };
 
-    fetchMock.mock('https://cloudflare-eth.com/', {
+    fetchMock.mock('api/block/436', {
       body: { result },
     });
 
@@ -45,7 +45,7 @@ describe('async actions', () => {
   })
 
   it('creates FETCH_BLOCK_ERROR when fetching has been done', () => {
-    fetchMock.mock('https://cloudflare-eth.com/', { error: {
+    fetchMock.mock('api/block/436', { error: {
       message: 'Something goes wrong. May the force be with you!'
     }});
 
